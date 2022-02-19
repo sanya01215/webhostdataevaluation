@@ -38,15 +38,17 @@ public class ParserFacade {
     public void parseData(String inputFilePath, String outputFilePath) {
         List<ReplyToCustomerData> replyToCustomerDataList = new ArrayList<>();
         List<String> inputList = getListFromFile(inputFilePath);
+        int parsingLineCount = 0;
 
         for (String s : inputList) {
             Map<LineAttrOrder, String> attrMap = splitter.splitAttrLine(s);
 
             if (attrMap.get(C_D).equals("C"))
                 replyToCustomerDataList.add(parseIncomeData(attrMap));
-            else {
+            else if(attrMap.get(C_D).equals("D")) {
                 parseQuery(attrMap,replyToCustomerDataList,outputFilePath);
             }
+            else parsingLineCount = Integer.parseInt(attrMap.get(C_D));
         }
     }
 
@@ -55,6 +57,7 @@ public class ParserFacade {
         replyToCustomerData.setCustomerQuestionType(questionTypeParser.parseQuestionType(attrMap));
         replyToCustomerData.setCustomerServiceType(serviceTypeParser.parseServQuesType(attrMap));
         replyToCustomerData.setFirstResponse(attrMap.get(P_N).equals("P"));
+        replyToCustomerData.setReplyTimeInMinutes(Integer.parseInt(attrMap.get(REPLY_TIME)));
         replyToCustomerData.setFromToDate(localDateParser.parseDateForQuery(attrMap));
         return replyToCustomerData;
     }

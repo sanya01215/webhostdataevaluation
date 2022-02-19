@@ -1,8 +1,8 @@
-import service.parse.parts.ServiceQuestionTypeParser;
+import service.parse.ParserFacade;
 
 public class WebHostDataEvalApplication {
     public static void main(String[] args) {
-        ServiceQuestionTypeParser serviceQuestionTypeParser = new ServiceQuestionTypeParser();
-//        fileParsingService.parseData("input/input.txt");
+        ParserFacade parserFacade = new ParserFacade();
+        parserFacade.parseData("input/input.txt","output/output.txt");
     }
 }

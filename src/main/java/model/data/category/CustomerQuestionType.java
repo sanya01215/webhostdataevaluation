@@ -1,5 +1,7 @@
 package model.data.category;
 
+import java.util.Objects;
+
 public class CustomerQuestionType {
     private int questionTypeId;
     private int categoryId;
@@ -27,5 +29,18 @@ public class CustomerQuestionType {
 
     public void setSubCategoryId(int subCategoryId) {
         this.subCategoryId = subCategoryId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerQuestionType that = (CustomerQuestionType) o;
+        return questionTypeId == that.questionTypeId && categoryId == that.categoryId && subCategoryId == that.subCategoryId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(questionTypeId, categoryId, subCategoryId);
     }
 }

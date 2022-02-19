@@ -5,6 +5,7 @@ import service.split.LineAttrOrder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Map;
 
@@ -21,7 +22,16 @@ public class LocalDateParser {
         return fromToDate;
     }
     private LocalDate parseDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
-        return LocalDate.parse(date, formatter);
+        DateTimeFormatter formatter;
+        LocalDate result;
+        try {
+             formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+            result = LocalDate.parse(date, formatter);
+        }
+        catch (DateTimeParseException e){
+            formatter = DateTimeFormatter.ofPattern("d.M.yyyy", Locale.ENGLISH);
+            result =LocalDate.parse(date, formatter);
+        }
+        return result;
     }
 }
