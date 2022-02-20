@@ -2,6 +2,9 @@ package model.data.category;
 
 import java.util.Objects;
 
+/**
+ * In the class represents you can specify all service categories and subcategories.
+ */
 public class CustomerServiceType {
     private int serviceId;
     private int variationId;

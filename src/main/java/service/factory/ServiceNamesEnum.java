@@ -1,0 +1,12 @@
+package service.factory;
+
+public enum ServiceNamesEnum {
+    INCOME_DATA_PARSER,
+    LOCAL_DATE_PARSER,
+    QUERY_PARSER,
+    QUESTION_TYPE_PARSER,
+    SERVICE_TYPE_PARSER,
+    QUERY_HANDLER,
+    STRING_SPLITTER,
+    INPUT_OUTPUT_HANDLER
+}

@@ -1,22 +1,22 @@
 package service.parse.parts;
 
 import model.data.category.CustomerServiceType;
-import service.split.LineAttrOrder;
+import service.Service;
 
-import java.util.Map;
-
-import static service.split.LineAttrOrder.*;
-
-public class ServiceTypeParser {
-    public CustomerServiceType parseServQuesType(Map<LineAttrOrder, String> attrMap) {
-        return parseCustomerServiceType(attrMap.get(SERVICE_TYPE));
+/**
+ * The class received SERVICE_TYPE of part of input line and
+ * returns CustomerServiceType from it
+ */
+public class ServiceType implements Service {
+    public CustomerServiceType parseServiceType(String serviceTypePart) {
+        return parseCustomerServiceType(serviceTypePart);
     }
 
     private CustomerServiceType parseCustomerServiceType(String lineAttr) {
         CustomerServiceType serviceType = new CustomerServiceType();
         String[] lineAttributesArray = lineAttr.split("\\.");
 //if all types (*) selected, lets specify it by -1 value
-        if(lineAttributesArray[0].equals("*")) {
+        if (lineAttributesArray[0].equals("*")) {
             serviceType.setServiceId(-1);
             return serviceType;
         }

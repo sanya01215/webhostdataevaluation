@@ -2,6 +2,9 @@ package model.data.category;
 
 import java.util.Objects;
 
+/**
+ * In the class represents you can specify all question categories and subcategories.
+ */
 public class CustomerQuestionType {
     private int questionTypeId;
     private int categoryId;

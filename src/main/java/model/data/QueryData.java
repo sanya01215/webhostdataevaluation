@@ -1,8 +1,12 @@
 package model.data;
 
 import model.date.FromToDate;
-
-public class QueryData extends HostData {
+/**
+ * The class represents Query for analytical service
+ * which includes: type of question, category, service
+ * and period of time, which have to be processed in QueryHandler.
+ */
+public class QueryData extends IncomeData {
     private FromToDate fromToDate;
 
     @Override

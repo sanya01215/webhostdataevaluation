@@ -1,10 +1,13 @@
 package model.data;
 
-
-public class ReplyToCustomerData extends HostData {
+/**
+ * The class represents the information of customer support via email.
+ * It records reply waiting time, type of question, category, and service.
+ */
+public class CustomerData extends IncomeData {
     private int replyTimeInMinutes;
 
-    public ReplyToCustomerData() {
+    public CustomerData() {
     }
 
     public int getReplyTimeInMinutes() {

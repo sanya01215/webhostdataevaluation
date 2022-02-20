@@ -4,7 +4,11 @@ import model.data.category.CustomerQuestionType;
 import model.data.category.CustomerServiceType;
 import model.date.FromToDate;
 
-public class HostData {
+/**
+ * The class represents parent of QueryData and ReplyToCustomerData
+ * for getting some better flexibility of application
+ */
+public class IncomeData {
     private CustomerServiceType customerServiceType;
     private CustomerQuestionType customerQuestionType;
     private boolean isFirstResponse;

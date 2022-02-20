@@ -2,6 +2,9 @@ package model.date;
 
 import java.time.LocalDate;
 
+/**
+ * The class represents period between dates or just one date.
+ */
 public class FromToDate {
     private LocalDate fromDate;
     private LocalDate toDate;
