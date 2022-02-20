@@ -1,31 +1,33 @@
-package service.parse.parts;
+package service.parse;
 
 import model.data.CustomerData;
 import service.Service;
-import service.handle.QueryHandler;
 import service.factory.ServiceFactory;
+import service.parse.parts.LocalDateParser;
+import service.parse.parts.QuestionTypeParser;
+import service.parse.parts.ServiceTypeParser;
 import service.split.LineAttrOrderEnum;
-import service.split.StringSplitter;
 
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.*;
 
-public class IncomeData implements Service {
+/**
+ * The class provides parsing customer all data from map,
+ * which contains attributes from input line that specifies customer data.
+ */
+public class CustomerDataMainParser implements Service {
 
-    private final QueryHandler queryHandler;
-    private final QuestionType questionTypeParser;
-    private final ServiceType serviceTypeParser;
-    private final LocalDate localDateParser;
-    private final StringSplitter splitter;
+    private final QuestionTypeParser questionTypeParser;
+    private final ServiceTypeParser serviceTypeParser;
+    private final LocalDateParser localDateParser;
 
-    public IncomeData() {
+    public CustomerDataMainParser() {
         this.questionTypeParser = ServiceFactory.getQuestionTypeParser();
         this.serviceTypeParser = ServiceFactory.getServiceTypeParser();
-        this.queryHandler = ServiceFactory.getQueryHandler();
         this.localDateParser = ServiceFactory.getLocalDateParser();
-        this.splitter = ServiceFactory.getStringSplitter();
     }
+
     public CustomerData parseIncomeData(Map<LineAttrOrderEnum, String> attrMap) {
         CustomerData customerData = new CustomerData();
         customerData.setCustomerQuestionType(questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE)));

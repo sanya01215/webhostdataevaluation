@@ -8,11 +8,16 @@ import service.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-public class QueryHandler implements Service {
+/**
+ * The class provides executing query by comparing parameters to all CustomerData in list
+ * and outputting suitable CustomerData.
+ * If category value equals -1 it means all categories(*);
+ */
+public class QueryExecutor implements Service {
     public List<CustomerData> handleQuery(QueryData queryData, List<CustomerData> customerDataList, String outputFilePath) {
         List<CustomerData> matchToQueryData = new ArrayList<>();
         for (CustomerData rtcData : customerDataList) {
+            //check if all query parameters are match
             if (!checkServiceType(rtcData, queryData)) continue;
             if (!checkQuestionType(rtcData, queryData)) continue;
             if (!checkDate(rtcData, queryData)) continue;
@@ -52,7 +57,9 @@ public class QueryHandler implements Service {
         LocalDate checkedDate = customerData.getFromToDate().getFromDate();
         LocalDate fromDate = queryData.getFromToDate().getFromDate();
         LocalDate toDate = queryData.getFromToDate().getToDate();
+        //if query date is not period
         if (toDate == null) return checkedDate.equals(fromDate);
+        //if query date is period
         return checkedDate.isAfter(fromDate) && checkedDate.isBefore(toDate);
     }
 }

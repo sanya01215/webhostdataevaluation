@@ -12,7 +12,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+/**
+The class provides input/output data functionality (in txt files)
+ */
 public class InputOutputHandler implements Service {
     public void processAndWriteOutput(List<CustomerData> matchToQueryData, String outputFilePath) {
         Path path = Paths.get(outputFilePath);
@@ -23,8 +25,14 @@ public class InputOutputHandler implements Service {
         }
     }
     private String processOutput(List<CustomerData> matchToQueryData) {
+        //if one object matches to query, then return reply minutes of it
         if (matchToQueryData.size() > 1) return outputAverageMinutes(matchToQueryData);
-        else if(matchToQueryData.size() ==1) return String.valueOf(matchToQueryData.get(0).getReplyTimeInMinutes());
+        //if two objects matches, then return average reply time of them
+        else if(matchToQueryData.size() ==1) {
+            String replyTime = String.valueOf(matchToQueryData.get(0).getReplyTimeInMinutes());
+            return replyTime;
+        }
+        //if no matched to query object
         else return "-";
     }
     private String outputAverageMinutes(List<CustomerData> matchToQueryData) {

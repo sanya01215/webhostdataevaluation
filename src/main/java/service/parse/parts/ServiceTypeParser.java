@@ -2,12 +2,13 @@ package service.parse.parts;
 
 import model.data.category.CustomerServiceType;
 import service.Service;
+import service.split.LineAttrOrderEnum;
 
 /**
- * The class received SERVICE_TYPE of part of input line and
- * returns CustomerServiceType from it
+ * The class provides processing string, that specifies SERVICE_TYPE {@link LineAttrOrderEnum} part of input line ,
+ * and returns parsed {@link CustomerServiceType} from it.
  */
-public class ServiceType implements Service {
+public class ServiceTypeParser implements Service {
     public CustomerServiceType parseServiceType(String serviceTypePart) {
         return parseCustomerServiceType(serviceTypePart);
     }

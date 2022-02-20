@@ -4,10 +4,10 @@ import model.data.category.CustomerQuestionType;
 import service.Service;
 
 /**
- * The class receive string part QUESTION_TYPE of input line and
- * returns CustomerQuestionType from it.
+ * The class provides processing string, that are QUESTION_TYPE part of input line ,
+ * and returns parsed {@link CustomerQuestionType} from it.
  */
-public class QuestionType implements Service {
+public class QuestionTypeParser implements Service {
     public CustomerQuestionType parseQuestionType(String questionTypePart) {
         return parseCustomerQuestionType(questionTypePart);
     }
@@ -27,4 +27,5 @@ public class QuestionType implements Service {
             customerQuestionType.setSubCategoryId(Integer.parseInt(lineAttributesArray[2]));
         return customerQuestionType;
     }
+
 }

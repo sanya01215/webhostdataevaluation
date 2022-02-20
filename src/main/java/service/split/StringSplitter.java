@@ -1,5 +1,6 @@
 package service.split;
 
+import exception.ParseInputParametersException;
 import service.Service;
 
 import java.util.Map;
@@ -16,7 +17,8 @@ public class StringSplitter implements Service {
         String[] attributes = line.split("\\s");
         LineAttrOrderEnum[] lineAttrOrderEnum = LineAttrOrderEnum.values();
 
-        for (int i = 0; i < attributes.length; i++) {
+        for (int i = 0;i < attributes.length; i++) {
+            if(lineAttrOrderEnum.length<=i)throw new ParseInputParametersException("Input parameter amount more than "+lineAttrOrderEnum.length);
             splitAttrMap.put(lineAttrOrderEnum[i], attributes[i]);
         }
         return splitAttrMap;
