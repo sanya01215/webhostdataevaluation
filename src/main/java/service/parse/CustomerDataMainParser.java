@@ -1,6 +1,8 @@
 package service.parse;
 
 import model.data.CustomerData;
+import model.data.category.QuestionType;
+import model.data.category.ServiceType;
 import service.Service;
 import service.factory.ServiceFactory;
 import service.parse.parts.LocalDateParser;
@@ -8,6 +10,7 @@ import service.parse.parts.QuestionTypeParser;
 import service.parse.parts.ServiceTypeParser;
 import service.split.LineAttrOrderEnum;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.*;
@@ -29,12 +32,11 @@ public class CustomerDataMainParser implements Service {
     }
 
     public CustomerData parseIncomeData(Map<LineAttrOrderEnum, String> attrMap) {
-        CustomerData customerData = new CustomerData();
-        customerData.setCustomerQuestionType(questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE)));
-        customerData.setCustomerServiceType(serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE)));
-        customerData.setFirstResponse(attrMap.get(P_N).equals("P"));
-        customerData.setReplyTimeInMinutes(Integer.parseInt(attrMap.get(REPLY_TIME)));
-        customerData.setFromToDate(localDateParser.parseDateForQuery(attrMap.get(DATE)));
-        return customerData;
+        QuestionType cusQT=questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE));
+        ServiceType cusST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE));
+        boolean cusIsFirstResponse = attrMap.get(P_N).equals("P");
+        int cusReplyInMinutes = Integer.parseInt(attrMap.get(REPLY_TIME));
+        LocalDate cusDate = localDateParser.parseOneDate(attrMap.get(DATE));
+        return new CustomerData(cusQT,cusST,cusIsFirstResponse,cusReplyInMinutes,cusDate);
     }
 }

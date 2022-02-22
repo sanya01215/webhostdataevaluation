@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * In the class represents you can specify all question categories and subcategories.
  */
-public class CustomerQuestionType {
+public class QuestionType {
     private int questionTypeId;
     private int categoryId;
     private int subCategoryId;
@@ -38,7 +38,7 @@ public class CustomerQuestionType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomerQuestionType that = (CustomerQuestionType) o;
+        QuestionType that = (QuestionType) o;
         return questionTypeId == that.questionTypeId && categoryId == that.categoryId && subCategoryId == that.subCategoryId;
     }
 

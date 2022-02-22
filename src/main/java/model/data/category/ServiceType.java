@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * In the class represents you can specify all service categories and subcategories.
  */
-public class CustomerServiceType {
+public class ServiceType {
     private int serviceId;
     private int variationId;
 
@@ -29,7 +29,7 @@ public class CustomerServiceType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomerServiceType that = (CustomerServiceType) o;
+        ServiceType that = (ServiceType) o;
         return serviceId == that.serviceId && variationId == that.variationId;
     }
 
