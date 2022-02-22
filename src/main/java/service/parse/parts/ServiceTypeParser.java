@@ -1,20 +1,20 @@
 package service.parse.parts;
 
-import model.data.category.CustomerServiceType;
+import model.data.category.ServiceType;
 import service.Service;
 import service.split.LineAttrOrderEnum;
 
 /**
  * The class provides processing string, that specifies SERVICE_TYPE {@link LineAttrOrderEnum} part of input line ,
- * and returns parsed {@link CustomerServiceType} from it.
+ * and returns parsed {@link ServiceType} from it.
  */
 public class ServiceTypeParser implements Service {
-    public CustomerServiceType parseServiceType(String serviceTypePart) {
+    public ServiceType parseServiceType(String serviceTypePart) {
         return parseCustomerServiceType(serviceTypePart);
     }
 
-    private CustomerServiceType parseCustomerServiceType(String lineAttr) {
-        CustomerServiceType serviceType = new CustomerServiceType();
+    private ServiceType parseCustomerServiceType(String lineAttr) {
+        ServiceType serviceType = new ServiceType();
         String[] lineAttributesArray = lineAttr.split("\\.");
 //if all types (*) selected, lets specify it by -1 value
         if (lineAttributesArray[0].equals("*")) {
