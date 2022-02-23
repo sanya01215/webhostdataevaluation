@@ -14,6 +14,8 @@ import service.split.LineAttrOrderEnum;
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.*;
+import static stringconst.StringConst.DATE_DELIMITER;
+import static stringconst.StringConst.FIRST_RESPONSE;
 
 /**
  * The class provides parsing all query data from map,
@@ -32,14 +34,13 @@ public class QueryMainParser implements Service {
     }
 
     public QueryData parseQuery(Map<LineAttrOrderEnum, String> attrMap) {
-        QuestionType queryQT = questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE));
-        ServiceType queryST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE));
-        boolean isFirstResponse = attrMap.get(P_N).equals("P");
+        QuestionType queryQT = questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE_POSITION));
+        ServiceType queryST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE_POSITION));
+        boolean isFirstResponse = attrMap.get(IS_FIRST_RESPONSE_POSITION).equals(FIRST_RESPONSE);
         FromToDate queryFromToDate;
-        String dateToParse = attrMap.get(DATE);
-        String twoDateDelimiter = "-";
-        if(dateToParse.contains(twoDateDelimiter))
-            queryFromToDate=localDateParser.parseTwoDate(dateToParse,twoDateDelimiter);
+        String dateToParse = attrMap.get(DATE_POSITION);
+        if(dateToParse.contains(DATE_DELIMITER))
+            queryFromToDate=localDateParser.parseTwoDate(dateToParse);
         else queryFromToDate=new FromToDate(localDateParser.parseOneDate(dateToParse));
 
         return new QueryData(queryQT,queryST,queryFromToDate,isFirstResponse);

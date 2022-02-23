@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static service.split.LineAttrOrderEnum.C_D;
+import static service.split.LineAttrOrderEnum.CUSTOMER_OR_QUERY_SYMBOL_POSITION;
+import static stringconst.StringConst.*;
 
 /**
  * The class controller combines all needed application services,
@@ -27,7 +28,6 @@ public class MainController {
     private final QueryMainParser queryMainParser;
     private final QueryExecutor queryExecutor;
     private final InputOutputHandler inputOutputHandler;
-
     public MainController() {
         this.queryExecutor = ServiceFactory.getQueryHandler();
         this.customerDataMainParserParser = ServiceFactory.getIncomeDataParser();
@@ -42,18 +42,18 @@ public class MainController {
         int parsingLineCount = 0;
         for (String s : inputList) {
             Map<LineAttrOrderEnum, String> argumentsMap = splitter.splitAttrLine(s);
-            switch (argumentsMap.get(C_D)) {
-                case "C" -> {
+            switch (argumentsMap.get(CUSTOMER_OR_QUERY_SYMBOL_POSITION)) {
+                case  CUSTOMER_SYMBOL -> {
                     //check invalid number of line arguments
                     if (argumentsMap.size() != 6) throw new ParseInputParametersException();
                     customerDataList.add(customerDataMainParserParser.parseIncomeData(argumentsMap));
                 }
-                case "D" -> {
+                case QUERY_SYMBOL -> {
                     //check invalid number of line arguments
                     if (argumentsMap.size() != 5) throw new ParseInputParametersException();
                     executeQuery(argumentsMap, customerDataList, outputFilePath);
                 }
-                default -> parsingLineCount = Integer.parseInt(argumentsMap.get(C_D));
+                default -> parsingLineCount = Integer.parseInt(argumentsMap.get(CUSTOMER_OR_QUERY_SYMBOL_POSITION));
             }
         }
     }
