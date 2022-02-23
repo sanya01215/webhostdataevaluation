@@ -32,11 +32,11 @@ public class CustomerDataMainParser implements Service {
     }
 
     public CustomerData parseIncomeData(Map<LineAttrOrderEnum, String> attrMap) {
-        QuestionType cusQT=questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE));
-        ServiceType cusST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE));
-        boolean cusIsFirstResponse = attrMap.get(P_N).equals("P");
-        int cusReplyInMinutes = Integer.parseInt(attrMap.get(REPLY_TIME));
-        LocalDate cusDate = localDateParser.parseOneDate(attrMap.get(DATE));
+        QuestionType cusQT=questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE_POSITION));
+        ServiceType cusST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE_POSITION));
+        boolean cusIsFirstResponse = attrMap.get(IS_FIRST_RESPONSE_POSITION).equals("P");
+        int cusReplyInMinutes = Integer.parseInt(attrMap.get(REPLY_TIME_POSITION));
+        LocalDate cusDate = localDateParser.parseOneDate(attrMap.get(DATE_POSITION));
         return new CustomerData(cusQT,cusST,cusIsFirstResponse,cusReplyInMinutes,cusDate);
     }
 }

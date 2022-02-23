@@ -12,6 +12,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static stringconst.StringConst.QUERY_HAS_NO_RESULT_SYMBOL;
+
 /**
 The class provides input/output data functionality (in txt files)
  */
@@ -25,15 +28,15 @@ public class InputOutputHandler implements Service {
         }
     }
     private String processOutput(List<CustomerData> matchToQueryData) {
-        //if one object matches to query, then return reply minutes of it
+        //if two or more objects matches, then return average reply time of them
         if (matchToQueryData.size() > 1) return outputAverageMinutes(matchToQueryData);
-        //if two objects matches, then return average reply time of them
+        //if one object matches to query, then return reply minutes of it
         else if(matchToQueryData.size() ==1) {
             String replyTime = String.valueOf(matchToQueryData.get(0).getReplyTimeInMinutes());
             return replyTime;
         }
-        //if no matched to query object
-        else return "-";
+        //if no match to query object
+        else return QUERY_HAS_NO_RESULT_SYMBOL;
     }
     private String outputAverageMinutes(List<CustomerData> matchToQueryData) {
         int sumMinutes = 0;

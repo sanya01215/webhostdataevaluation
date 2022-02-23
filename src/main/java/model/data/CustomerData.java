@@ -2,7 +2,6 @@ package model.data;
 
 import model.data.category.QuestionType;
 import model.data.category.ServiceType;
-import model.date.FromToDate;
 
 import java.time.LocalDate;
 

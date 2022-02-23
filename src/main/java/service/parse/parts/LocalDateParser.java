@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+import static stringconst.StringConst.*;
 
 /**
  * The class provides processing string, that are DATE part of input line,
@@ -16,12 +17,12 @@ import java.util.Locale;
  */
 public class LocalDateParser implements Service {
     private final DateTimeFormatter formatterWithLeadZero
-            = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+            = DateTimeFormatter.ofPattern(DATE_FORMAT_WITH_LEAD_ZERO, Locale.ENGLISH);
     private final DateTimeFormatter formatterWithNoLeadZero
-            = DateTimeFormatter.ofPattern("d.M.yyyy", Locale.ENGLISH);
+            = DateTimeFormatter.ofPattern(DATE_FORMAT_WITH_NO_LEAD_ZERO, Locale.ENGLISH);
 
-    public FromToDate parseTwoDate(String datesString,String dateDelimiter) {
-        String[] betweenDate = datesString.split(dateDelimiter);
+    public FromToDate parseTwoDate(String datesString) {
+        String[] betweenDate = datesString.split(DATE_DELIMITER);
         if(betweenDate.length != 2)
             throw new ParseInputParametersException("Invalid number of Dates");
         LocalDate fromDate = parseDate(betweenDate[0]);
