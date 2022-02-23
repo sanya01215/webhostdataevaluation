@@ -14,8 +14,8 @@ import service.split.LineAttrOrderEnum;
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.*;
-import static stringconst.StringConst.DATE_DELIMITER;
-import static stringconst.StringConst.FIRST_RESPONSE;
+import static appconst.StringConst.DATE_DELIMITER;
+import static appconst.StringConst.FIRST_RESPONSE;
 
 /**
  * The class provides parsing all query data from map,

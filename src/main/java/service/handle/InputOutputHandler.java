@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static stringconst.StringConst.QUERY_HAS_NO_RESULT_SYMBOL;
+import static appconst.StringConst.QUERY_HAS_NO_RESULT_SYMBOL;
 
 /**
 The class provides input/output data functionality (in txt files)

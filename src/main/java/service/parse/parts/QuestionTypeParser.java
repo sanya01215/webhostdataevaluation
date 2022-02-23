@@ -3,8 +3,8 @@ package service.parse.parts;
 import model.data.category.QuestionType;
 import service.Service;
 
-import static stringconst.StringConst.ALL_SYMBOL;
-import static stringconst.StringConst.SUB_ARG_DELIMITER;
+import static appconst.StringConst.ALL_SYMBOL;
+import static appconst.StringConst.SUB_ARG_DELIMITER;
 
 /**
  * The class provides processing string, that are QUESTION_TYPE part of input line ,

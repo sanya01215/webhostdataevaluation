@@ -16,7 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.CUSTOMER_OR_QUERY_SYMBOL_POSITION;
-import static stringconst.StringConst.*;
+import static appconst.IntConst.EXPECT_CUSTOMER_ARG_NUMBER;
+import static appconst.IntConst.EXPECT_QUERY_ARG_NUMBER;
+import static appconst.StringConst.*;
 
 /**
  * The class controller combines all needed application services,
@@ -44,13 +46,13 @@ public class MainController {
             Map<LineAttrOrderEnum, String> argumentsMap = splitter.splitAttrLine(s);
             switch (argumentsMap.get(CUSTOMER_OR_QUERY_SYMBOL_POSITION)) {
                 case  CUSTOMER_SYMBOL -> {
-                    //check invalid number of line arguments
-                    if (argumentsMap.size() != 6) throw new ParseInputParametersException();
+                    //check invalid number of customer arguments
+                    if (argumentsMap.size() != EXPECT_CUSTOMER_ARG_NUMBER) throw new ParseInputParametersException("Invalid number of customer arguments");
                     customerDataList.add(customerDataMainParserParser.parseIncomeData(argumentsMap));
                 }
                 case QUERY_SYMBOL -> {
-                    //check invalid number of line arguments
-                    if (argumentsMap.size() != 5) throw new ParseInputParametersException();
+                    //check invalid number of query arguments
+                    if (argumentsMap.size() != EXPECT_QUERY_ARG_NUMBER) throw new ParseInputParametersException("Invalid number of query arguments");
                     executeQuery(argumentsMap, customerDataList, outputFilePath);
                 }
                 default -> parsingLineCount = Integer.parseInt(argumentsMap.get(CUSTOMER_OR_QUERY_SYMBOL_POSITION));
