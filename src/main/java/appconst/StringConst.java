@@ -1,4 +1,4 @@
-package stringconst;
+package appconst;
 
 public class StringConst {
     public static final String QUERY_SYMBOL = "D";

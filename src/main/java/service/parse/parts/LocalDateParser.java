@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
-import static stringconst.StringConst.*;
+import static appconst.StringConst.*;
 
 /**
  * The class provides processing string, that are DATE part of input line,

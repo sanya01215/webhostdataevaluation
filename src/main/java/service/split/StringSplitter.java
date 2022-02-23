@@ -6,7 +6,7 @@ import service.Service;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static stringconst.StringConst.ARG_DELIMITER;
+import static appconst.StringConst.ARG_DELIMITER;
 
 /**
  * The class for split input line onto parts(split by whitespace) and save it in map.

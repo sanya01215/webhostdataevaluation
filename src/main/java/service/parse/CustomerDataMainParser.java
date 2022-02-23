@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import static service.split.LineAttrOrderEnum.*;
+import static appconst.StringConst.FIRST_RESPONSE;
 
 /**
  * The class provides parsing customer all data from map,
@@ -34,7 +35,7 @@ public class CustomerDataMainParser implements Service {
     public CustomerData parseIncomeData(Map<LineAttrOrderEnum, String> attrMap) {
         QuestionType cusQT=questionTypeParser.parseQuestionType(attrMap.get(QUESTION_TYPE_POSITION));
         ServiceType cusST = serviceTypeParser.parseServiceType(attrMap.get(SERVICE_TYPE_POSITION));
-        boolean cusIsFirstResponse = attrMap.get(IS_FIRST_RESPONSE_POSITION).equals("P");
+        boolean cusIsFirstResponse = attrMap.get(IS_FIRST_RESPONSE_POSITION).equals(FIRST_RESPONSE);
         int cusReplyInMinutes = Integer.parseInt(attrMap.get(REPLY_TIME_POSITION));
         LocalDate cusDate = localDateParser.parseOneDate(attrMap.get(DATE_POSITION));
         return new CustomerData(cusQT,cusST,cusIsFirstResponse,cusReplyInMinutes,cusDate);
